@@ -1,27 +1,17 @@
-/* Isabella Man
- * CSE15
- * pa5
- * 12/5/19
- * DictionaryTest.h
+/*
  * Header file for Dictionary ADT based on Hash Tables
  */
 
-//-----------------------------------------------------------------------------
-// Dictionary.h
-// Header file for the Dictionary ADT
-//-----------------------------------------------------------------------------
 #include<stdio.h>
 #include<stdlib.h>
 
 #ifndef _DICTIONARY_H_INCLUDE_
 #define _DICTIONARY_H_INCLUDE_
 
-
 // Exported type --------------------------------------------------------------
 
 // Dictionary
 typedef struct DictionaryObj* Dictionary;
-
 
 // Constructors-Destructors ---------------------------------------------------
 
@@ -32,7 +22,6 @@ Dictionary newDictionary();
 // freeDictionary()
 // Destructor for the Dictionary ADT.
 void freeDictionary(Dictionary* pD);
-
 
 // ADT operations -------------------------------------------------------------
 
@@ -59,18 +48,9 @@ void delete(Dictionary D, char* k);
 // Reset D to the empty state, the empty set of pairs.
 void makeEmpty(Dictionary D);
 
-
 // Other Operations -----------------------------------------------------------
 
 // DictionaryToString()
-// Determines a text representation of the current state of Dictionary D. Each 
-// (key, value) pair is represented as the chars in key, followed by a space,
-// followed by the chars in value, followed by a newline '\n' char. The pairs 
-// occur in alphabetical order by key. The function returns a pointer to a char 
-// array, allocated from heap memory, containing the text representation 
-// described above, followed by a terminating null '\0' char. It is the 
-// responsibility of the calling function to free this memory.
 char* DictionaryToString(Dictionary D);
-
 
 #endif
