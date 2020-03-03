@@ -1,8 +1,4 @@
-/* Isabella Man
- * CSE15
- * pa5
- * 12/5/19
- * DictionaryTest.c
+/*
  * Client test for implementation and header files of Dictionary ADT
  */
 
@@ -11,14 +7,10 @@
 #include<string.h>
 #include"Dictionary.h"
 
-
 int main(){
    Dictionary first;
    char* printOut;
-   //char* v;
-   //char* k = calloc(100, sizeof(char));
-
-   // create a Dictionary and some pairs into it
+  
    A = newDictionary();
    insert(first, "10","apple");
    insert(first, "9","banana");
@@ -70,4 +62,3 @@ int main(){
 
    return EXIT_SUCCESS;
 }
-
