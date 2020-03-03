@@ -1,8 +1,4 @@
-/* Isabella Man
- * CSE 15
- * 12/5/19
- * pa5
- * Dictionary.c
+/* 
  * Dictionary ADT based on Hash Tables, or an array that stores set of (key, value) pairs, where key and value are strings
  * Evenly distributes probability of where each key is stored in a given size of a Hash Table
  */
@@ -13,7 +9,7 @@
 #include <string.h>
 #include"Dictionary.h"
 
-const int tableSize = 101; // choice of length can change
+const int tableSize = 101;
 
 // Hash functions ---------------------
 // rotate_left()
@@ -49,8 +45,8 @@ int hash(char* key){
 // NodeObj type
 typedef struct NodeObj{
    //int item;
-   char* key;		// null terminated char array
-   char* value;		// null terminated char array
+   char* key;	
+   char* value;
    struct NodeObj* next;
 } NodeObj;
 
@@ -88,9 +84,8 @@ void freeAllNodes(Node H){
 
 // DictionaryObj type
 typedef struct DictionaryObj{
-   //Node head;           // pointer to the first Node in list
    Node* table;         // pointer to an array of LinkedLists, table T
-   int numPairs;        // number of key-value pairs in this Dictionary
+   int numPairs;
 } DictionaryObj;
 
 // Helper function -----------------------------------------------------------
@@ -125,7 +120,7 @@ typedef struct DictionaryObj* Dictionary;
 Dictionary newDictionary(){
    Dictionary D = malloc(sizeof(DictionaryObj));
    //D->head = NULL;
-   D->table = calloc(tableSize, sizeof(Node));	// set table to point to newly allocated heap memory
+   D->table = calloc(tableSize, sizeof(Node));
    D->numPairs = 0;
    return D;
 }
@@ -142,7 +137,6 @@ void freeDictionary(Dictionary *pD){
       pD = NULL;
    }
 }
-
 
 // ADT operations -------------------------------------------------------------
 
@@ -168,21 +162,7 @@ char* lookup(Dictionary D, char* k) {
    }
 
    Node T;
-   /*for (int i = 0; i < tableSize; i++) {
-      if (D->table[i] != NULL) {
-         T = D->table[i];
-         if (strcmp(T->key, k) == 0) {
-               return T->value;
-         }
-         while (T->next != NULL) {
-            if (strcmp(T->key, k) == 0) {
-               return T->value;
-            }
-            T = T->next;
-        }
-      }
-   }*/
-
+	
    int index = hash(k);
    if(D->table[index] != NULL) {
       T = D->table[index];
@@ -195,7 +175,6 @@ char* lookup(Dictionary D, char* k) {
             if (strcmp(T->key, k) == 0) {
                return T->value;
             }
-            //T = T->next;
          }
       }
    }
@@ -215,8 +194,6 @@ void insert(Dictionary D, char* k, char* v){
    }
 
    int index = hash(k);
-   //printf("test: %d\n", index);
-   //place (k,v) at head of list T[h(k)]
 
    Node T;
    if (D->table[index] == NULL) {
@@ -228,15 +205,9 @@ void insert(Dictionary D, char* k, char* v){
       T = newNode(k, v);
       T->next = D->table[index];
       D->table[index] = T;
-
-      //T = D->table[index];
-      //T->next = newNode(k, v);
-      //T = T->next; 
    }
    D->numPairs++;
 }
-
-
 
 // delete()
 // Remove pair whose first member is the argument k from D.
@@ -265,7 +236,6 @@ void delete(Dictionary D, char* k){
    D->numPairs--;
 }
 
-
 // makeEmpty()
 // Reset D to the empty state, the empty set of pairs
 void makeEmpty(Dictionary D) {
@@ -274,19 +244,10 @@ void makeEmpty(Dictionary D) {
          "Dictionary Error: calling makeEmpty() on NULL Dictionary reference\n");
       exit(EXIT_FAILURE);
    }
-   //Node T;
    for (int i = 0; i < tableSize; i++) {
-      /*if (D->table[i] != NULL) {
-         T = D->table[i];
-         while (T->next != NULL) {
-            freeNode(T);
-            T = T->next;
-         }*/
          freeAllNodes(D->table[i]);
          D->table[i] = NULL;
-      //}
    }
-   //free(&T);
    D->numPairs = 0;
 }
 
@@ -327,12 +288,9 @@ char* DictionaryToString(Dictionary D) {
    }
 
    int count = countChars(D);
-   //printf("countt: %d\n", count); 
 
    Node T;
-   //str = malloc((D->numPairs*4) * sizeof(char*));
    str = malloc((count + 4) * sizeof(char));
-   //str = calloc(count, sizeof(char));
  
    for (int i = 0; i < tableSize; i++) {
       if (D->table[i] != NULL) {
@@ -354,6 +312,5 @@ char* DictionaryToString(Dictionary D) {
          }
       }
    }  
-   //str[strlen(str)-1] = '\0';
    return str;
 }
