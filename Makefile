@@ -1,8 +1,4 @@
-#------------------------------------------------------------------------------
-# Makefile for any client of any ADT in C
-#------------------------------------------------------------------------------
-
-CLIENT         = DictionaryClient1
+CLIENT         = DictionaryTest
 ADT            = Dictionary
 SOURCE         = $(CLIENT).c
 OBJECT         = $(CLIENT).o
